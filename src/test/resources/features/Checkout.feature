@@ -1,0 +1,1 @@
+Feature: To test checkout processes on Loblaws website
