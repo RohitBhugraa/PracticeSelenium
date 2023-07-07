@@ -32,5 +32,13 @@ public class Init{
 		
 		}
 	
+	// if need to create a method to get all diff urls - parameterization
+	public String getAppUrl1(String urlKey) {
+		
+		System.out.println("Url opened from Init file is " + EnvironmentSpecificConfiguration.from(env).getProperty("appUrl"));
+		return EnvironmentSpecificConfiguration.from(env).getProperty(urlKey);
+		
+		}
+	
 
 }

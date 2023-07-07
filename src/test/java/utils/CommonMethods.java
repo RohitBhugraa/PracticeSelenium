@@ -35,6 +35,9 @@ public class CommonMethods extends PageObject{
 	}
 	
 	public void closebrowser() {
+		
+		// getDriver().quit() -> will close all the windows/tabs (parent + child)
+		// getDriver().close() -> will close the window/tab where the control is
 		getDriver().quit();
 		
 	}
@@ -48,6 +51,9 @@ public class CommonMethods extends PageObject{
 		getDriver().findElement(By.xpath("//body")).click();
 		getDriver().findElement(By.xpath("//body")).sendKeys(Keys.PAGE_UP);
 	}
+	
+
+	
 
 
 }

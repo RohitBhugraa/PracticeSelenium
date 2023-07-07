@@ -9,21 +9,19 @@ When User clicks on Sign In page
 Then User Clicks on Create PC id
 Then User creates an account by providing enter "<Email>","<Password>" and "<confirmPassword>"
 Then user clicks on Agree checkbox
-Then user clicks creates PC id button
+#Then user clicks creates PC id button
 
 Examples:
 |Email|Password|confirmPassword|
-|John_Singh01@gmail.com|FirstTest@001|FirstTest@001|
-#|John_Singh02@gmail.com|FirstTest@002|FirstTest@002|
+|John_Singh10@gmail.com|FirstTest@001|FirstTest@001|
 
 
 
 
 #working
-@RegisterError
+@RegisterError1
 Scenario Outline: To test Error message on Register Page
 Given User launches Loblaws url
-#Given user launches url "www.loblaws.ca"
 When User clicks on Sign In page
 Then User Clicks on Create PC id
 Then User creates an account by providing enter "<Email>","<Password>" and "<confirmPassword>"
@@ -31,7 +29,7 @@ Then validates the error message on register page
 
 Examples:
 |Email|Password|confirmPassword|
-|John_Singh01@gmail.com|FirstTest@001|FirstTest@0012|
+|John_Singh10@gmail.com|FirstTest@001|FirstTest@0012|
 
 
 #working
@@ -40,19 +38,19 @@ Scenario: To test login functionality
 Given User launches Loblaws url
 When User clicks on Sign In page
 Then User enters "John_Singh01@gmail.com" and "FirstTest@001" to login
-#Then User click on My Account
-#Then User click on "Sign Out" in My Account
+Then User click on My Account
+Then User click on "Sign Out" in My Account
 
 
 #working
-#add a product to cart
+#add a product to cart, create dynamic xpaths
 @Addtocart  @AllTestCases
 Scenario: To test Add to cart functionality
 Given User launches Loblaws url
 #When user searched "<product>" in search for product bar
 When user searched "milk" in search for product bar
-#Then user clicks on sorting dropdown and validate all values in dropdown are displayed
-#Then user selects "Newest to Oldest Products" from dropdown
+Then user clicks on sorting dropdown and validate all values in dropdown are displayed
+#Then user selects "Relevance" from dropdown
 Then search results are displayed
 Then user add "Partly Skimmed Milk 2% MF" to the cart
 
@@ -60,7 +58,8 @@ Then user add "Partly Skimmed Milk 2% MF" to the cart
 ########################################################################################
 
 #working
-# select filter and check the values from the filter
+# select filter and check the values from the filter, 
+#getAttribute method for checking if dropdown is collapsed or expanded
 @SelectFiltersWithCheckBox  @AllTestCases
 Scenario: To test Filter functionality by selecting checkbox
 Given User launches Loblaws url
@@ -151,6 +150,7 @@ Examples:
 Scenario: To test window handles
 Given User wanted to test windowhandles
 #Given user wanted to test windowhandles for loblaws
+
 
 #working
 @testWebTable   @AllTestCases

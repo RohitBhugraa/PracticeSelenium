@@ -8,17 +8,17 @@ import utils.CommonMethods;
 public class RegisterSteps {
 	
 	@Steps
-	HomePage home;
+	HomePage home;   // HomePage home = new HomePage();
 	@Steps
 	LoginPage login;
 	@Steps
 	RegisterPage register;
 	@Steps
 	CommonMethods common;
-//	@Steps
-//	Product product;
-//	@Steps
-//	Action action;
+	@Steps
+	Product product;
+	@Steps
+	ActionsConcepts action;
 //	@Steps
 //	PopUpsConcepts popUp;
 //	@Steps
@@ -39,8 +39,9 @@ public class RegisterSteps {
 		
 		home.openApplication();
 		
-	   
 	}
+	
+	
 	@When("User clicks on Sign In page")
 	public void user_clicks_on_sign_in_page() {
 		home.clickSignIn();
@@ -82,6 +83,8 @@ public class RegisterSteps {
 	public void user_searched_in_search_for_product_bar(String product) {
 	   
 		home.searchProduct(product);
+		
+		
 		
 	}
 	
@@ -127,27 +130,26 @@ public class RegisterSteps {
 	@Then("user select {string} on the page")
 	public void user_select_on_the_page(String filterName) {
 	    
-	 //   product.searchFilter(filterName);
+	    product.searchFilter(filterName);
 	}
 	
 	@Then("user selects {string} option from the filter")
 	public void user_selects_option_from_the_filter(String filterOption) {
 		
-	//	product.selectFilterOption(filterOption);
+		product.selectFilterOption(filterOption);
 	    
 	}
 	
 	
 	@Then("user search for {string} brand in the filter")
 	public void user_search_for_brand_in_the_filter(String search) {
-	//	product.searchableDropdownforBrands(search);
+		product.searchableDropdownforBrands(search);
 	}
 	
 	@When("user selects one {string} and {string}")
 	public void user_selects_one_and(String category, String subcategory) {
 		
-	//	action.testActions("Grocery", "International Foods");
-	//	action.simpleTestActions();
+		action.testActions("Grocery", "International Foods");
 	    
 	}
 	
@@ -155,7 +157,7 @@ public class RegisterSteps {
 	@Given("User launches url to test drag and drop")
 	public void user_launches_url_to_test_drag_and_drop() {
 	    
-	//	action.testDragAndDrop();
+		action.testDragAndDrop();
 	}
 	
 	

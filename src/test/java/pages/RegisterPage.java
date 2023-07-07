@@ -37,12 +37,16 @@ public class RegisterPage extends PageObject {
 	@FindBy(css = "button[type='submit']")
 	WebElementFacade SubmitPCId;
 
+	
+	// For xpath -   //tagname[@attributeName = 'Attributevalue']
+	
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElementFacade SubmitPCIdXpath;
 	
 	//classname = "input-error input-error--error text-group__error error"
 	//xpath = //label[@class ='input-error input-error--error text-group__error error']
 	//label[@id='confirmPassword__error']
+	//css = "label[for='confirmPassword']"
 	@FindBy(id = "confirmPassword__error")
 	WebElementFacade confirmError;
 
@@ -73,7 +77,7 @@ public class RegisterPage extends PageObject {
 		//to test negative scenario
 	//	Assert.assertEquals("The passwordsss above don't match.", confirmError.getText());
 		
-		Assert.assertTrue("confirm password error test case is working ", 5>10);
+	//	Assert.assertTrue("confirm password error test case is working ", 5>10);
 		
 	
 	}
@@ -108,6 +112,10 @@ public class RegisterPage extends PageObject {
 		agreeCheckBox.click();
 		report.LOG("Clicked on checkbox");
 		waitABit(2000);
+		agreeCheckBox.click();
+		waitABit(2000);
+		agreeCheckBox.click();
+		waitABit(2000);
 		
 	}
 	
@@ -117,6 +125,8 @@ public class RegisterPage extends PageObject {
 		report.LOG("Clicked on PC ID button");
 		waitABit(2000);
 		common.closebrowser();
+		
+		
 	}
 
 
