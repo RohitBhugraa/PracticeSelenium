@@ -1,4 +1,4 @@
-
+@Runallcases
 Feature: To test register functionality on Lowblaws website
 
 
@@ -6,9 +6,9 @@ Feature: To test register functionality on Lowblaws website
 Scenario Outline: To test successful Register
 Given User launches Loblaws url
 When User clicks on Sign In page
-Then User Clicks on Create PC id
-Then User creates an account by providing enter "<Email>","<Password>" and "<confirmPassword>"
-Then user clicks on Agree checkbox
+#Then User Clicks on Create PC id
+#Then User creates an account by providing enter "<Email>","<Password>" and "<confirmPassword>"
+#Then user clicks on Agree checkbox
 #Then user clicks creates PC id button
 
 Examples:
@@ -107,6 +107,7 @@ When user selects one "<Category>" and "<SubCategory>"
 Examples:
 |Category|SubCategory|
 |Grocery|International Foods|
+#|Joe Fresh|Men|
 
 
 

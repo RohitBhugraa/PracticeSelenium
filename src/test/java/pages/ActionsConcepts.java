@@ -65,6 +65,7 @@ public void simpleActionsOnHomePage() {
 		WebElement categoryName = getDriver().findElement(By.xpath(beforeCategoryXpath+category+afterCategoryXpath));
 		//	WebElement categoryName = getDriver().findElement(By.xpath("//span[text()='Grocery']"));
 		actions.moveToElement(categoryName).perform();
+
 		//	actions.moveToElement(categoryName).build().perform();
 
 
@@ -75,12 +76,32 @@ public void simpleActionsOnHomePage() {
 		WebElement subCategoryName = getDriver().findElement(By.xpath(beforeSubCategoryXpath + subCategory + afterSubCategoryXpath));
 		actions.moveToElement(subCategoryName).perform();
 
+		
 		// click on sub category
 		subCategoryName.click();
+		waitABit(5000);
+		System.out.println(getDriver().getCurrentUrl());
+		System.out.println(getDriver().getTitle());	
+		
+		
+		
+		// to hover on SubcategoryItems
+		
+		/*
+	//	String beforeSubCategoryXpath = "//span[text()='";
+	//	String afterSubCategoryXpath = "']";
+			WebElement subCategoryItemName = getDriver().findElement(By.xpath("//span[text()='Rice & Grain']"));
+	//	WebElement subCategoryName = getDriver().findElement(By.xpath(beforeSubCategoryXpath + subCategory + afterSubCategoryXpath));
+		actions.moveToElement(subCategoryItemName).perform();
+
+		// click on sub category
+		subCategoryItemName.click();
 		waitABit(5000);
 
 		System.out.println(getDriver().getCurrentUrl());
 		System.out.println(getDriver().getTitle());	
+		
+		*/
 
 	}
 

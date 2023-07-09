@@ -92,8 +92,15 @@ public class HomePage extends PageObject{
 		//	open();
 
 		//open the url in  browser specified in the file
+		
+	//	driver.get() method is used to open an URL and it will wait till the whole page gets loaded. 
+	//	WebDriver will wait until the page has fully loaded before returning control to your test or script.
 		//getDriver().get("https://www.loblaws.ca");    OR
-		//getDriver().navigate().to("https://www.loblaws.ca");
+		
+		// While driver.navigate.to() method navigates to an URL and It will not wait till the whole page gets loaded. 
+		//It maintains the browser history and cookies, so we can use forward and backward button to navigate between the pages during the coding of Testcase.
+		
+	//	getDriver().navigate().to("https://www.loblaws.ca");
 		//waitABit(4000);	
 
 
@@ -102,7 +109,7 @@ public class HomePage extends PageObject{
 		getDriver().get(init.getAppUrl());
 		getDriver().manage().window().maximize();
 		report.LOG("Loblaws Url is opened");
-		waitABit(4000);
+		//waitABit(4000);
 
 
 		// to get title of the page
