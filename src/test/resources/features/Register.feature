@@ -5,7 +5,7 @@ Feature: To test register functionality on Lowblaws website
 @SuccessfulRegister
 Scenario Outline: To test successful Register
 Given User launches Loblaws url
-When User clicks on Sign In page
+#When User clicks on Sign In page
 #Then User Clicks on Create PC id
 #Then User creates an account by providing enter "<Email>","<Password>" and "<confirmPassword>"
 #Then user clicks on Agree checkbox
@@ -19,7 +19,7 @@ Examples:
 
 
 #working
-@RegisterError1
+@RegisterError
 Scenario Outline: To test Error message on Register Page
 Given User launches Loblaws url
 When User clicks on Sign In page
@@ -52,6 +52,7 @@ When user searched "milk" in search for product bar
 Then user clicks on sorting dropdown and validate all values in dropdown are displayed
 #Then user selects "Relevance" from dropdown
 Then search results are displayed
+
 Then user add "Partly Skimmed Milk 2% MF" to the cart
 
 
@@ -124,7 +125,7 @@ Examples:
 
 
 
-#working
+#working , Testing in Frames
 @testMouseActionsforDrag&Drop
 Scenario: To test mouse actions and hover
 Given User launches url to test drag and drop
@@ -149,12 +150,32 @@ Examples:
 #working
 @testwindowHandles  @AllTestCases
 Scenario: To test window handles
-Given User wanted to test windowhandles
-#Given user wanted to test windowhandles for loblaws
+#Given User wanted to test windowhandles
+Given user wanted to test windowhandles for loblaws
 
 
 #working
 @testWebTable   @AllTestCases
 Scenario: To test Web table
 Given user wanted to test web table
+
+
+#working
+@testWebTableValidations   @AllTestCases
+Scenario Outline: To test Web table with validations
+Given user wanted to test web table for "<Country>" and validate "<Language>" ,  "<Currency>", "<WikipediaPageTitle>"
+
+Examples:
+|Country|Language|Currency|WikipediaPageTitle|
+|India|Hindi, English|Indian Rupee|India - Wikipedia|
+|China|Standard Chinese (Mandarin)|Renminbi (Yuan)|China - Wikipedia|
+|Germany|German|Euro|Germany - Wikipedia|
+|Canada|English, French|Canadian Dollar|Canada - Wikipedia|
+
+
+#working   To get the list of suggestions in the search bar and click on them if required
+@typeahead
+Scenario: To test typeAhead
+Given user wants to validate type ahead for a product
+
 

@@ -163,36 +163,42 @@ public class RegisterSteps {
 
 	@Given("User tests Javascript popup")
 	public void user_tests_javascript_popup() {
-			popUp.testJavaScriptAlerts();
+		popUp.testJavaScriptAlerts();
 	}
 
 
 	@When("User tests windows popup for {string}")
 	public void user_tests_windows_popup_for(String fileName) {
 
-			popUp.testDesktopPopUp(fileName);
+		popUp.testDesktopPopUp(fileName);
 	}
 
 
 	@Given("User wanted to test windowhandles")
 	public void user_wanted_to_test_windowhandles() {
 
-			handle.testWindowHandles();
+		handle.testWindowHandles();
 
 	}
 	@Given("user wanted to test windowhandles for loblaws")
 	public void user_wanted_to_test_windowhandles_for_loblaws() {
 
-			handle.testWindowHandles();
-			handle.testWindowHandlesInLowblaws();
+		handle.testWindowHandlesInLowblaws();
 
 	}
 
 	@Given("user wanted to test web table")
 	public void user_wanted_to_test_web_table() {
 
-			table.WebTableTesting();
+		table.WebTableTesting();
 
+	}
+
+
+	@Given("user wanted to test web table for {string} and validate {string} ,  {string}, {string}")
+	public void user_wanted_to_test_web_table_for_and_validate(String Country, String Language, String Currrency, String WikipediaPage) {
+
+		table.WebTableTestingWithValidations(Country, Language, Currrency, WikipediaPage );
 	}
 
 
@@ -200,8 +206,8 @@ public class RegisterSteps {
 	public void user_selects_grocery_and(String category, String subcategory) {
 		//product.categoryProducts(category, subcategory);
 
-			action.listOfSubCategories(category);
-			action.listOfItems(subcategory);
+		action.listOfSubCategories(category);
+		action.listOfItems(subcategory);
 
 	}
 
@@ -209,14 +215,21 @@ public class RegisterSteps {
 	@Then("user validates number of subcategories under a category is {string}")
 	public void user_validates_number_of_subcategories_under_a_category_is(String noOfSubcategoires) {
 
-			action.noOfCategories(Integer.parseInt(noOfSubcategoires));
+		action.noOfCategories(Integer.parseInt(noOfSubcategoires));
 	}
 
 
 	@Then("user validates number of items under a subcategory is {string}")
 	public void user_validates_number_of_items_under_a_subcategory_is(String noOfItems) {
 
-			action.noOfItemsInSubCategory(Integer.parseInt(noOfItems));
+		action.noOfItemsInSubCategory(Integer.parseInt(noOfItems));
+	}
+
+	@Given("user wants to validate type ahead for a product")
+	public void user_wants_to_validate_type_ahead_for_a_product() {
+		
+		home.openApplication();
+		product.getTypeAheaddata();
 	}
 
 

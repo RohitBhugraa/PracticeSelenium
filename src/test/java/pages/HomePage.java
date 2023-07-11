@@ -131,7 +131,18 @@ public class HomePage extends PageObject{
 		if (clearCookiesPopUp.isCurrentlyVisible()) {
 			clearCookies();
 		}
+		
+		WebElement button = getDriver().findElement(By.xpath("//button[@data-cruller='checkout-button']"));
 
+        // Check if the button is enabled
+        boolean isEnabled = button.isEnabled();
+        
+        if (isEnabled) {
+            System.out.println("Button is enabled.");
+        } else {
+            System.out.println("Button is disabled.");
+        }
+		
 	}
 
 	public void clickSignIn() {

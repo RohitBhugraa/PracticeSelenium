@@ -8,9 +8,11 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.*;
 
 import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.annotations.Steps;
 
 public class WindowHandles extends PageObject {
 	
+	@Steps
 	HomePage home;
 	
 	public void testWindowHandles() {
@@ -35,25 +37,27 @@ public class WindowHandles extends PageObject {
 		Iterator<String> it = allWindowHandles.iterator();
 		
 		String parentWindow = it.next();
-		System.out.println("Parent window " + parentWindow);
+		System.out.println("Parent window - " + parentWindow);
 		
 		String childWindow = it.next();
-		System.out.println("Child window " + childWindow);
+		System.out.println("First Child window - " + childWindow);
 		getDriver().switchTo().window(childWindow);
 		waitABit(4000);
-		System.out.println("TitleOfChildWindow " + getDriver().getTitle());
+		System.out.println("Title Of First Child Window  - " + getDriver().getTitle());
 		getDriver().close();
+	// it will close all the open windows- second child window and parent window will be closed
+	//	getDriver().quit();
 		
 		String secondChildWindow = it.next();
-		System.out.println("Second Child window " + secondChildWindow);
+		System.out.println("Second Child window - " + secondChildWindow);
 		getDriver().switchTo().window(secondChildWindow);
 		waitABit(4000);
-		System.out.println("TitleOfSecondChildWindow " + getDriver().getTitle());
+		System.out.println("Title Of Second Child Window  - " + getDriver().getTitle());
 		getDriver().close();
 		
 		getDriver().switchTo().window(parentWindow);
 		waitABit(4000);
-		System.out.println("TitleOfparentWindow" + getDriver().getTitle());
+		System.out.println("Title Of parent Window - " + getDriver().getTitle());
 		getDriver().quit();
 		
 	}
@@ -77,39 +81,41 @@ public class WindowHandles extends PageObject {
 		subCategoryName.click();
 		waitABit(5000);
 		
-//		String parentWindowId = getDriver().getWindowHandle();
-//		String TitlebeforeExecution = getDriver().getTitle();
-//		
-//		Set<String> allWindowHandles = getDriver().getWindowHandles();
-//		System.out.println(allWindowHandles.size());
-//		
-//		for (String handle : allWindowHandles) {
-//			System.out.println(handle);	
-//			
-//			if (!handle.equals(parentWindowId)) {
-//				getDriver().switchTo().window(handle);
-//				String text = getDriver().findElement(By.xpath("//h1[@class='type-ds-title-1 loadToCard-header__title']")).getText();
-//				System.out.println(text);
-//				System.out.println("Child window Title - " + getDriver().getTitle());
-//				System.out.println("Child window url - " + getDriver().getCurrentUrl());
-//				waitABit(4000);
-//				getDriver().close();
-//			}
-//		}
-//		
-//		getDriver().switchTo().window(parentWindowId);
-//		
-//		String TitleAfterExecution = getDriver().getTitle();
-//		System.out.println("TitleAfterExecution " + TitleAfterExecution);
-//		System.out.println(getDriver().getCurrentUrl());
-//			
-//		waitABit(4000);
-//		
-//		getDriver().quit();
-//		
-//		Assert.assertEquals(TitlebeforeExecution, TitleAfterExecution);
+		
+		String parentWindowId = getDriver().getWindowHandle();
+		String TitlebeforeExecution = getDriver().getTitle();
+		
+		Set<String> allWindowHandles = getDriver().getWindowHandles();
+		System.out.println(allWindowHandles.size());
+		
+		for (String handle : allWindowHandles) {
+			System.out.println(handle);	
+			
+			if (!handle.equals(parentWindowId)) {
+				getDriver().switchTo().window(handle);
+				String text = getDriver().findElement(By.xpath("//h1[@class='type-ds-title-1 loadToCard-header__title']")).getText();
+				System.out.println(text);
+				System.out.println("Child window Title - " + getDriver().getTitle());
+				System.out.println("Child window url - " + getDriver().getCurrentUrl());
+				waitABit(4000);
+				getDriver().close();
+			}
+		}
+		
+		getDriver().switchTo().window(parentWindowId);
+		
+		String TitleAfterExecution = getDriver().getTitle();
+		System.out.println("TitleAfterExecution " + TitleAfterExecution);
+		System.out.println(getDriver().getCurrentUrl());
+			
+		waitABit(4000);
+		
+		getDriver().quit();
+		
+		Assert.assertEquals(TitlebeforeExecution, TitleAfterExecution);
 		
 		
+		/*
 		
 		Set<String> allHandles = getDriver().getWindowHandles();
 		System.out.println(allHandles.size());
@@ -121,7 +127,7 @@ public class WindowHandles extends PageObject {
 		System.out.println("Parent window " + parentWindow);
 		
 		String childWindow = it.next();
-		System.out.println("Parent window " + childWindow);
+		System.out.println("Child window " + childWindow);
 		getDriver().switchTo().window(childWindow);
 		waitABit(4000);
 		System.out.println("TitleOfChildWindow " + getDriver().getTitle());
@@ -129,10 +135,10 @@ public class WindowHandles extends PageObject {
 		
 		getDriver().switchTo().window(parentWindow);
 		waitABit(4000);
-		System.out.println("TitleOfparentWindow" + getDriver().getTitle());
+		System.out.println("TitleOfparentWindow  " + getDriver().getTitle());
 		getDriver().quit();
 		
-		
+		*/
 	}
 
 }
