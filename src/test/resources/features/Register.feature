@@ -185,3 +185,6 @@ When user tests right click operation
 
 
 
+Scenario: To test github branching
+
+
