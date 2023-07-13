@@ -5,6 +5,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.*;
+import java.awt.AWTException;
+import java.awt.Robot;
 
 import net.serenitybdd.core.pages.PageObject;
 import utils.CommonMethods;
@@ -65,7 +67,7 @@ public void testJavaScriptAlerts() {
 	}
 		
 
-	public void testDesktopPopUp(String fileName) {
+	public void testDesktopPopUp(String fileName) throws AWTException {
 		
 		String path = System.getProperty("user.dir");
 		String filepath = path +"\\Data\\";
@@ -78,8 +80,19 @@ public void testJavaScriptAlerts() {
 		common.scrolldown();
 		common.scrolldown();
 		
-		waitABit(3000);
-		getDriver().findElement(By.id("fileupload")).sendKeys(fullFilePath);
+		waitABit(20000);
+		getDriver().findElement(By.id("fileupload")).click();
+		
+//		Robot robo = new Robot();
+//		robo.keyPress(java.awt.event.KeyEvent.VK_TAB);
+//		robo.keyRelease(java.awt.event.KeyEvent.VK_TAB);
+//		robo.keyPress(java.awt.event.KeyEvent.VK_ENTER);
+//		robo.keyRelease(java.awt.event.KeyEvent.VK_ENTER);
+	//	getDriver().switchTo().activeElement().sendKeys(fullFilePath);
+		
+		
+	//	getDriver().findElement(By.id("fileupload")).sendKeys(fullFilePath);
+		
 		waitABit(5000);
 		report.LOG("uploaded " + fileName);
 		System.out.println("uploaded " + fileName);

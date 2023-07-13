@@ -2,10 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.util.List;
-
+import org.openqa.selenium.JavascriptExecutor;
+import java.util.*;
 import org.junit.Assert;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Keys;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -67,13 +68,16 @@ public class HomePage extends PageObject{
 	WebElementFacade confirmLocation;
 
 	@FindBy(xpath ="//span[@class = 'cart-item-count__text']")
-	WebElementFacade noOfItemsInCart;		
+	WebElementFacade noOfItemsInCart;	
+
+	@FindBy(xpath ="//a[text()='Advertise with Loblaw Media™']")
+	WebElementFacade partner;
 
 	List <WebElementFacade> productDetails;
-	
-//	Both these are interfaces - 
-//	WebElement - old version
-//	WebElementFacade - newer version (it extends WebElement)- all properties of WebElement + some additional methods
+
+	//	Both these are interfaces - 
+	//	WebElement - old version
+	//	WebElementFacade - newer version (it extends WebElement)- all properties of WebElement + some additional methods
 
 
 	public void openApplicationAgain(String url) {
@@ -92,15 +96,15 @@ public class HomePage extends PageObject{
 		//	open();
 
 		//open the url in  browser specified in the file
-		
-	//	driver.get() method is used to open an URL and it will wait till the whole page gets loaded. 
-	//	WebDriver will wait until the page has fully loaded before returning control to your test or script.
+
+		//	driver.get() method is used to open an URL and it will wait till the whole page gets loaded. 
+		//	WebDriver will wait until the page has fully loaded before returning control to your test or script.
 		//getDriver().get("https://www.loblaws.ca");    OR
-		
+
 		// While driver.navigate.to() method navigates to an URL and It will not wait till the whole page gets loaded. 
 		//It maintains the browser history and cookies, so we can use forward and backward button to navigate between the pages during the coding of Testcase.
-		
-	//	getDriver().navigate().to("https://www.loblaws.ca");
+
+		//	getDriver().navigate().to("https://www.loblaws.ca");
 		//waitABit(4000);	
 
 
@@ -116,11 +120,11 @@ public class HomePage extends PageObject{
 		System.out.println(getDriver().getTitle());
 		// to get url of the page
 		System.out.println(getDriver().getCurrentUrl());
-		
 
 
-	//	Assert.assertEquals("Loblaws Supermarket | Grocery shop online", getDriver().getTitle());
-	//	Assert.assertEquals("https://www.loblaws.ca/", getDriver().getCurrentUrl());
+
+		//	Assert.assertEquals("Loblaws Supermarket | Grocery shop online", getDriver().getTitle());
+		//	Assert.assertEquals("https://www.loblaws.ca/", getDriver().getCurrentUrl());
 
 
 		// one way of element identification - using WebElement; other way is using - WebElementFacade
@@ -130,19 +134,20 @@ public class HomePage extends PageObject{
 
 		if (clearCookiesPopUp.isCurrentlyVisible()) {
 			clearCookies();
+			waitABit(3000);
 		}
-		
+
 		WebElement button = getDriver().findElement(By.xpath("//button[@data-cruller='checkout-button']"));
 
-        // Check if the button is enabled
-        boolean isEnabled = button.isEnabled();
-        
-        if (isEnabled) {
-            System.out.println("Button is enabled.");
-        } else {
-            System.out.println("Button is disabled.");
-        }
-		
+		// Check if the button is enabled
+		boolean isEnabled = button.isEnabled();
+
+		if (isEnabled) {
+			System.out.println("Button is enabled.");
+		} else {
+			System.out.println("Button is disabled.");
+		}
+
 	}
 
 	public void clickSignIn() {
@@ -230,10 +235,14 @@ public class HomePage extends PageObject{
 		}
 		else if (SortOption.equalsIgnoreCase("Newest to Oldest Products"))
 		{	
-			//js.executeScript("arguments[0].scrollIntoView();", sortByNewToOld);
-			//	js.executeScript("window.scrollBy(0,350)", "");
+			
+			
 			sortByNewToOld.click();
+			scrollIntoView(sortByNewToOld);
+			scrollIntoView(partner);
+			partner.click();
 			report.LOG("Newest to Oldest Products is selected");
+			waitABit(5000);
 		}
 		else report.LOG(SortOption + " is not a valid input");	
 		waitABit(5000);
@@ -288,10 +297,10 @@ public class HomePage extends PageObject{
 
 				String fullxpath = beforeProduct+product+afterProduct;
 				System.out.println(fullxpath);
-				
+
 				// When using Web Element
 				getDriver().findElement(By.xpath(fullxpath)).click();
-				
+
 				// when using Web Element Facade
 				find(By.xpath(fullxpath)).click();
 
@@ -317,6 +326,50 @@ public class HomePage extends PageObject{
 
 		Assert.assertEquals("1", noOfItemsInCart.getText());
 		report.LOG("No. of product in cart is " + noOfItemsInCart.getText());
+	}
+
+
+	public void testrighClickinNewTab() {
+
+		scrollIntoView(partner);
+		waitABit(5000);
+		Actions actions = new Actions(getDriver());
+		// Perform the right-click action
+		actions.contextClick(partner).perform();
+		waitABit(2000);
+		// Simulate opening the link in a new tab
+		actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+		waitABit(2000);
+		
+		String parentWindowId = getDriver().getWindowHandle();
+		Set<String> allWindowHandles = getDriver().getWindowHandles();
+		System.out.println(allWindowHandles.size());
+		
+		for (String handle : allWindowHandles) {
+			System.out.println(handle);	
+			
+			if (!handle.equals(parentWindowId)) {
+				getDriver().switchTo().window(handle);
+				System.out.println("Child window Title - " + getDriver().getTitle());
+				System.out.println("Child window url - " + getDriver().getCurrentUrl());
+				waitABit(4000);
+				getDriver().close();
+			}
+		}
+		
+		
+		getDriver().switchTo().window(parentWindowId);
+		System.out.println("TitleAfterExecution " + getDriver().getTitle());
+		System.out.println("urlAfterExecution " + getDriver().getCurrentUrl());
+
+
+
+	}
+
+	public void scrollIntoView(WebElement element) {
+
+		JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+		jse.executeScript("arguments[0].scrollIntoView(false);", element);
 	}
 
 

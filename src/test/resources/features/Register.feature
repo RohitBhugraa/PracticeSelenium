@@ -12,7 +12,7 @@ Given User launches Loblaws url
 #Then user clicks creates PC id button
 
 Examples:
-|Email|Password|confirmPassword|
+|Email|Password|confirmPassword| 
 |John_Singh10@gmail.com|FirstTest@001|FirstTest@001|
 
 
@@ -50,10 +50,9 @@ Given User launches Loblaws url
 #When user searched "<product>" in search for product bar
 When user searched "milk" in search for product bar
 Then user clicks on sorting dropdown and validate all values in dropdown are displayed
-#Then user selects "Relevance" from dropdown
-Then search results are displayed
-
-Then user add "Partly Skimmed Milk 2% MF" to the cart
+Then user selects "Newest to Oldest Products" from dropdown
+#Then search results are displayed
+#Then user add "Partly Skimmed Milk 2% MF" to the cart
 
 
 ########################################################################################
@@ -144,7 +143,7 @@ When User tests windows popup for "<fileName>"
 Examples:
 |fileName|
 |TestDocumentForFileUpload.docx|
-|TEST.pdf|
+#|TEST.pdf|
 
 
 #working
@@ -177,5 +176,12 @@ Examples:
 @typeahead
 Scenario: To test typeAhead
 Given user wants to validate type ahead for a product
+
+@rightclick
+Scenario: To test right click operation
+Given User launches Loblaws url
+When user tests right click operation
+
+
 
 

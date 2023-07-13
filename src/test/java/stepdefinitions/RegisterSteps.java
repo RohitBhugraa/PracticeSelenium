@@ -1,5 +1,7 @@
 package stepdefinitions;
 
+import java.awt.AWTException;
+
 import io.cucumber.java.en.*;
 import net.thucydides.core.annotations.Steps;
 import pages.*;
@@ -168,7 +170,7 @@ public class RegisterSteps {
 
 
 	@When("User tests windows popup for {string}")
-	public void user_tests_windows_popup_for(String fileName) {
+	public void user_tests_windows_popup_for(String fileName) throws AWTException {
 
 		popUp.testDesktopPopUp(fileName);
 	}
@@ -230,6 +232,14 @@ public class RegisterSteps {
 		
 		home.openApplication();
 		product.getTypeAheaddata();
+	}
+	
+	
+	@When("user tests right click operation")
+	public void user_tests_right_click_operation() {
+	    
+		home.testrighClickinNewTab();
+		
 	}
 
 
