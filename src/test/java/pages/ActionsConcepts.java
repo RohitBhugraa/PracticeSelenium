@@ -175,6 +175,7 @@ public void simpleActionsOnHomePage() {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public void testDragAndDrop(){
 
 		getDriver().get("https://jqueryui.com/droppable/");

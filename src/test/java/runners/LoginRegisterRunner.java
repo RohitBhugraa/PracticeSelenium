@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty"}, // optional
      //   features = "src/test/resources/features/Login&SignIn.feature",
         features = "src/test/resources/features",
-        tags = "@rightclick", 
+        tags = "@Login", 
         glue = "stepdefinitions"
 )
 

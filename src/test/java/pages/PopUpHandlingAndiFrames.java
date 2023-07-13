@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.*;
 import java.awt.AWTException;
-import java.awt.Robot;
 
 import net.serenitybdd.core.pages.PageObject;
 import utils.CommonMethods;

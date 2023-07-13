@@ -241,6 +241,20 @@ public class RegisterSteps {
 		home.testrighClickinNewTab();
 		
 	}
+	
+	
+	@Then("User enters {string} and {string} to login")
+	public void user_enters_and_to_login(String string, String string2) {
+
+	}
+	@Then("User click on My Account")
+	public void user_click_on_my_account() {
+
+	}
+	@Then("User click on {string} in My Account")
+	public void user_click_on_in_my_account(String string) {
+
+	}
 
 
 
